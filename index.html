@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>我的导航</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header></header> 
+  <main >
+      <style>
+
+      </style>
+      <div class='wrap' id='huang'></div>
+
+  </main>
+  <footer></footer> 
+  <script>
+      // 1.初始化数据
+      var keys ={
+          '0': {0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
+          '1': {0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
+          '2': {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',length:7},
+          'length': 3,
+      }
+      
+      var hash ={
+          'a': 'alibaba.com',
+          'b': 'bilibili.com',
+          'c': undefined,
+          'e': undefined,
+          'w': 'weibo.com',
+      }
+
+      //取出localStorage中的 uuu 对应的hash
+      var hashINLocalStorage= JSON.parse(localStorage.getItem('uuu') || 'null')
+      if(hashINLocalStorage){
+          hash = hashINLocalStorage
+      }
+
+      // 2.生成键盘
+      //遍历keys，生成kbd标签
+      var index= 0;
+      while (index< keys.length){    //0,1,2
+          var div1= document.createElement('div')
+          div1.className= 'row'
+          huang.appendChild(div1)
+          var row= keys[index]    //第一个数组，第二个数组，第三个数组
+          var index2= 0;
+          while (index2< row.length){  //0~9,0~8,0~6
+              var kbd= document.createElement('kbd')
+              var span= document.createElement('span')
+              span.textContent= row[index2]
+              kbd.appendChild(span)
+              span.className= 'text'
+              kbd.className= 'key'
+              var buttonx= document.createElement('button')
+              buttonx.textContent= '编辑'
+              buttonx.id = row[index2]
+
+              var img1= document.createElement('img')
+                  if(hash[row[index2]]){
+                      img1.src= 'http://'+ hash[row[index2]] +'/favicon.ico'}else{
+                      img1.src= '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+                  }
+              img1.onerror= function(xxx){
+                  xxx.target.src= '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+              }    //如果获取icon失败，则用自制替换
+
+              buttonx.onclick = function(huoquaniu){
+                  var button2= huoquaniu['target']
+                  var img2= button2.nextSibling   //元素.nextSibling方法可以获取下一个元素，.previousSibling可以获取上一个元素
+                  var key= button2.id  // huoquaniu['target']就是用户点击的元素
+                  var x= prompt('请输入地址')
+                  hash[key]= x  //hash变更
+                  img2.src= 'http://'+ x +'/favicon.ico'
+                  img2.onerror= function(xxx){
+                      xxx.target.src= '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+                  }
+                  localStorage.setItem('uuu',JSON.stringify(hash))  //存储用户编辑至localStorage
+                  console.log(hash)
+              }
+              div1.appendChild(kbd)
+              kbd.appendChild(buttonx)
+              kbd.appendChild(img1)
+              index2= index2+ 1;
+          }
+          index= index + 1;
+      }
+       // 3.监听键盘
+      document.onkeypress =function (xxx) {
+          var key = xxx['key'];
+          var website = hash[key];
+        //location.href = 'http://'+ website;
+          window.open('http://'+ website,'_blank')
+      }
+  </script>
+</body>
+</html>
