@@ -24,7 +24,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -72,7 +72,7 @@
       <workItem from="1591114215910" duration="96000" />
       <workItem from="1591114326843" duration="316000" />
       <workItem from="1591114660095" duration="154000" />
-      <workItem from="1591145684655" duration="7244000" />
+      <workItem from="1591145684655" duration="8656000" />
     </task>
     <servers />
   </component>
@@ -99,10 +99,10 @@
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
     <state x="314" y="278" key="FileChooserDialogImpl/0.0.2048.1112@0.0.2048.1112" timestamp="1591114299460" />
-    <state x="35" y="179" key="SettingsEditor" timestamp="1591150651992">
+    <state x="35" y="179" key="SettingsEditor" timestamp="1591154416543">
       <screen x="0" y="0" width="2048" height="1112" />
     </state>
-    <state x="35" y="179" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1591150651992" />
+    <state x="35" y="179" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1591154416543" />
     <state x="815" y="336" key="SettingsEditor/0.0.2560.1396@0.0.2560.1396" timestamp="1586177338692" />
     <state x="813" y="386" width="672" height="678" key="search.everywhere.popup" timestamp="1586096082826">
       <screen x="0" y="0" width="2048" height="1112" />
