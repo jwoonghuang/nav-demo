@@ -38,6 +38,7 @@
           hash = hashINLocalStorage
       }
 
+
       // 2.生成键盘
       //遍历keys，生成kbd标签
       for(index= 0;index< keys.length;index= index + 1) {    //index< keys.length  0,1,2
@@ -48,38 +49,15 @@
 
           var row= keys[index]    //第一个数组，第二个数组，第三个数组
           for(index2= 0;index2< row.length;index2= index2+ 1){   //index2< row.length   0~9,0~8,0~6
-              var span= tag('span')
-              span.textContent= row[index2]
-              span.className= 'text'
+              var span= createSpan(row[index2])
 
-              var buttonx= tag('button')
-              buttonx.textContent= '编辑'
-              buttonx.id = row[index2]
-              buttonx.onclick = function(huoquaniu){
-                  var button2= huoquaniu['target']
-                  var img2= button2.nextSibling   //元素.nextSibling方法可以获取下一个元素，.previousSibling可以获取上一个元素
-                  var key= button2.id  // huoquaniu['target']就是用户点击的元素
-                  var x= prompt('请输入地址')
-                  hash[key]= x  //hash变更
-                  img2.src= 'http://'+ x +'/favicon.ico'
-                  img2.onerror= function(xxx){
-                      xxx.target.src= '//i.loli.net/2017/11/10/5a05afbc5e183.png'
-                  }
-                  localStorage.setItem('uuu',JSON.stringify(hash))  //存储用户编辑至localStorage
-                  console.log(hash)
-              }
+              var buttonx=createButton(row[index2])
 
-              var img1= tag('img')
-              if(hash[row[index2]]){
-                  img1.src= 'http://'+ hash[row[index2]] +'/favicon.ico'}else{
-                  img1.src= '//i.loli.net/2017/11/10/5a05afbc5e183.png'
-              }
-              img1.onerror= function(xxx){
-                  xxx.target.src= '//i.loli.net/2017/11/10/5a05afbc5e183.png'
-              }    //如果获取icon失败，则用自制替换
+              var img1= createImage(hash[row[index2]])
 
               var kbd= tag('kbd')
               kbd.className= 'key'
+
               kbd.appendChild(span)
               kbd.appendChild(buttonx)
               kbd.appendChild(img1)
@@ -96,6 +74,45 @@
           window.open('http://'+ website,'_blank')
       }
 
+
+      function createSpan(textContent) {
+          var span= tag('span');
+          span.textContent= textContent;
+          span.className= 'text'
+          return span
+      }
+
+      function createButton(id) {
+          var buttonx= tag('button')
+          buttonx.textContent= '编辑'
+          buttonx.id = id
+          buttonx.onclick = function(huoquaniu){
+              var button2= huoquaniu['target']
+              var img2= button2.nextSibling   //元素.nextSibling方法可以获取下一个元素，.previousSibling可以获取上一个元素
+              var key= button2.id  // huoquaniu['target']就是用户点击的元素
+              var x= prompt('请输入地址')
+              hash[key]= x  //hash变更
+              img2.src= 'http://'+ x +'/favicon.ico'
+              img2.onerror= function(xxx){
+                  xxx.target.src= '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+              }
+              localStorage.setItem('uuu',JSON.stringify(hash))  //存储用户编辑至localStorage
+              console.log(hash)
+          }
+          return buttonx
+      }
+
+      function createImage(domain) {
+          var img1= tag('img')
+          if(domain){
+              img1.src= 'http://'+ domain +'/favicon.ico'}else{
+              img1.src= '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+          }
+          img1.onerror= function(xxx){
+              xxx.target.src= '//i.loli.net/2017/11/10/5a05afbc5e183.png'
+          }    //如果获取icon失败，则用自制替换
+          return img1
+      }
 
       function getFromLocalStorage(name){
           return JSON.parse(localStorage.getItem(name) || 'null')
